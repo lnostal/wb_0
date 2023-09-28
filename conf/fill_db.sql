@@ -1,17 +1,3 @@
-
--- CREATE TABLE IF NOT EXISTS testtb (
---                                       user_id serial primary key,
---                                       username varchar (50) unique not null,
---                                       password varchar (50) not null,
---                                       created timestamp not null
--- );
---
--- CREATE TABLE IF NOT EXISTS ttt (
---                                       order_id serial primary key,
---                                       name varchar (50) unique not null,
---                                       created timestamp not null
--- );
-
 create table if not exists orders (
     order_uid varchar(100) unique not null,
     track_number varchar(50) unique not null,
