@@ -2,6 +2,7 @@ package nats
 
 import (
 	"L0/src/cache"
+	"L0/src/db"
 	"L0/src/utils"
 	stan "github.com/nats-io/stan.go"
 	"sync"
@@ -24,7 +25,7 @@ func receiveMessages(sc stan.Conn) {
 		err := validateData(m.Data)
 		if err == nil {
 			cache.Add(m.Data)
-			//db.PutData(m.Data)
+			db.PutData(m.Data)
 		}
 	})
 

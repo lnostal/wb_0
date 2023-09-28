@@ -15,11 +15,8 @@ func PutData(data []byte) {
 	_, err := base.Exec("insert into orders(order_uid, track_number, entry, delivery,payment,items,locale,internal_signature,customer_id,delivery_service, shardkey, sm_id,date_created,oof_hard) values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14);",
 		order.OrderUID, order.TrackNumber, order.Entry, order.Delivery, order.Payment, order.Items, order.Locale, order.InternalSignature, order.CustomerID, order.DeliveryService, order.Shardkey, order.SmID, order.DateCreated, order.OofShard)
 	if err != nil {
-		defer base.Close()
 		return
 	}
-
-	defer base.Close()
 }
 
 func GetData() ([][]byte, error) {
@@ -29,7 +26,6 @@ func GetData() ([][]byte, error) {
 	rows, err := base.Query("select * from orders;")
 
 	if err != nil {
-		defer base.Close()
 		return dt, err
 	}
 
@@ -43,6 +39,5 @@ func GetData() ([][]byte, error) {
 			dt = append(dt, data)
 		}
 	}
-	defer base.Close()
 	return dt, nil
 }
