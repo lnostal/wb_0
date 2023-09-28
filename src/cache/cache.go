@@ -32,7 +32,7 @@ func Add(element []byte) {
 
 func AtIndex(i int) ([]byte, error) {
 	if len(cache)-1 < i {
-		return nil, errors.New("out of memory")
+		return nil, errors.New("out of index")
 	}
 
 	return cache[i], nil
