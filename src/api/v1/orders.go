@@ -1,9 +1,13 @@
 package v1
 
 import (
+	"L0/src/cache"
+	"L0/src/db/model"
+	"L0/src/utils"
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
 	"strings"
 )
 
@@ -14,18 +18,35 @@ func ReturnError(w http.ResponseWriter, errString string) {
 	w.Write([]byte(str))
 }
 
-func GetParamId(URL string) string {
-	id := strings.Split(URL, "/")
-	return id[len(id)-1]
-}
-
 func ReturnResponse(w http.ResponseWriter, data any) {
 	w.Header().Set("Content-Type", "application/json")
 	js, _ := json.Marshal(data)
 	w.Write(js)
 }
 
+// -------
+
+func getParamId(URL string) string {
+	id := strings.Split(URL, "/")
+	return id[len(id)-1]
+}
+
 func GetOrderById(w http.ResponseWriter, r *http.Request) {
-	id := GetParamId(r.URL.Path)
-	ReturnResponse(w, "{\"status\":\"ok\", \"id\":\""+id+"\"}")
+	idStr := getParamId(r.URL.Path)
+	id, err := strconv.Atoi(idStr)
+
+	if err != nil {
+		ReturnError(w, err.Error())
+		return
+	}
+
+	order, err := cache.AtIndex(id - 1)
+	if err != nil {
+		ReturnError(w, err.Error())
+		return
+	}
+
+	var o model.Order
+
+	ReturnResponse(w, utils.ConvertToModel(order, o))
 }

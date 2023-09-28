@@ -3,12 +3,12 @@
   "track_number": "WBILMTESTTRACK",
   "entry": "WBIL",
   "delivery": {
-    "name": "Test Testov",
+    "name": "Sviatoslav Svidrigailov",
     "phone": "+9720000000",
     "zip": "2639809",
-    "city": "Kiryat Mozkin",
-    "address": "Ploshad Mira 15",
-    "region": "Kraiot",
+    "city": "St. Petersburg",
+    "address": "Grazhdanskaia 19",
+    "region": "D",
     "email": "test@gmail.com"
   },
   "payment": {
