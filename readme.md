@@ -3,7 +3,7 @@
 brew install postgresql@15
 brew services start postgresql@15
 brew install nats-streaming-server
-brew services start nats-streaming-server
+brew services restart nats-streaming-server
 ```
 after checkout
 ```bash 
@@ -19,7 +19,13 @@ pdql
 psql -U marla -d db_wb_test -q -f conf/fill_db.sql
 ```
 
-Локально: 
-1. создать psql bd  + юзер + таблицы 
-2. развернуть  nats-streaming
+---
+
+тестовые данные в стрим
+
+```bash
+bash conf/to_nuts.sh
+```
+
+
 

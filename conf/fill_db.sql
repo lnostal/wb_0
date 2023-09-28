@@ -17,11 +17,6 @@
 -- нормализация для слабых духом
 --
 
-create table if not exists deliveries (
-    name varchar(100)
-);
-
-
 create table if not exists payments (
     transaction varchar(100) unique not null primary key,
     request_id bigint,

@@ -1,7 +1,12 @@
 package main
 
 import (
+	"L0/src/api"
 	"L0/src/db"
+	"L0/src/nats"
+	"fmt"
+	"github.com/go-chi/chi/v5"
+	"net/http"
 )
 
 func main() {
@@ -12,5 +17,12 @@ func main() {
 		panic(err)
 	}
 
-	//defer database.Close()
+	go nats.Connect()
+
+	addr := ":3333"
+	fmt.Printf("Starting server on %v\n", addr)
+	router := chi.NewRouter()
+	api.API(router)
+	http.ListenAndServe(addr, router)
+
 }
