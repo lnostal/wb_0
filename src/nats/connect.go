@@ -24,6 +24,7 @@ func receiveMessages(sc stan.Conn) {
 		err := validateData(m.Data)
 		if err == nil {
 			cache.Add(m.Data)
+			//db.PutData(m.Data)
 		}
 	})
 

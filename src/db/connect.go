@@ -24,7 +24,6 @@ func Connect() *sql.DB {
 	if err != nil {
 		panic(err)
 	}
-	//defer db.Close()
 
 	err = db.Ping()
 	if err != nil {

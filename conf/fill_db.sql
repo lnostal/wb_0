@@ -12,42 +12,7 @@
 --                                       created timestamp not null
 -- );
 
-
---
--- нормализация для слабых духом
---
-
--- create table if not exists payments (
---     transaction varchar(100) unique not null primary key,
---     request_id bigint,
---     currency varchar(4),
---     provider varchar(20),
---     amount int,
---     payment_dt timestamp, --??
---     bank varchar(15), --??
---     delivery_cost int,
---     goods_total int, -- итоговая цена ???
---     custom_fee int
--- );
---
---
--- create table if not exists items (
---     id serial primary key,
---     chrt_id int,
---     track_number varchar(50),
---     price int,
---     rid varchar(50),
---     name varchar(50),
---     sale int,
---     size varchar(10),
---     total_price int,
---     nm_id int,
---     brand varchar(50),
---     statu int
--- );
-
 create table if not exists orders (
-    id serial unique primary key,
     order_uid varchar(100) unique not null,
     track_number varchar(50) unique not null,
     entry varchar(50) not null,

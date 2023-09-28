@@ -12,9 +12,6 @@ func main() {
 
 	cache.New()
 
-	//cache := cache.Cache()
-	//go db.Connect()
-
 	go nats.Connect()
 
 	router := chi.NewRouter()

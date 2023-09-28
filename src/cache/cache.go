@@ -1,12 +1,26 @@
 package cache
 
-import "errors"
+import (
+	"L0/src/db"
+	"errors"
+)
 
 var cache [][]byte
 
 func New() [][]byte {
 	if len(cache) == 0 {
-		// загрузить данные из бд
+
+		dataFromDb, err := db.GetData()
+
+		if err != nil {
+			return cache
+		}
+
+		for _, d := range dataFromDb {
+			Add(d)
+		}
+
+		return cache
 	}
 
 	return cache
